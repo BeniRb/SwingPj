@@ -10,10 +10,18 @@ import java.awt.image.BufferedImage;
 public class Player extends Entity {
  GamePanel gp;
  keyHandler keyH;
+//indicating players screen
+ public final int screenX;
+ public final int screenY;
 
  public Player(GamePanel gp, keyHandler keyH) {
      this.gp = gp;
      this.keyH = keyH;
+
+     //because i want the center
+     screenX = gp.screenWidth/2 - (gp.tileSize/2);
+     screenY = gp.screenHeight/2 - (gp.tileSize/2);
+
 //initializes default values
      setDefaultValues();
      // initializes players sprites
@@ -21,8 +29,8 @@ public class Player extends Entity {
  }
 // player starting pos and speed
  public void setDefaultValues() {
-     x = 100;
-     y = 100;
+     worldX = gp.tileSize * 30;
+     worldY = gp.tileSize * 31;
      speed = 3;
      direction = "down";
  }
@@ -49,19 +57,19 @@ public class Player extends Entity {
      if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
          if(keyH.upPressed) {
              direction = "up";
-             y-=speed;
+             worldY-=speed;
          }
          else if(keyH.downPressed) {
              direction = "down";
-             y+=speed;
+             worldY+=speed;
          }
          else if(keyH.leftPressed) {
              direction = "left";
-             x-=speed;
+             worldX-=speed;
          }
          else  if(keyH.rightPressed) {
              direction = "right";
-             x+=speed;
+             worldX+=speed;
          }
          //sprite cycler / if you want to add more sprites you do that here
          //first you add images in getplayerimage
@@ -119,6 +127,6 @@ public class Player extends Entity {
              break;
      }
      //image observer??
-     g2.drawImage(image, x, y,gp.tileSize,gp.tileSize, null);
+     g2.drawImage(image, screenX, screenY,gp.tileSize,gp.tileSize, null);
  }
 }

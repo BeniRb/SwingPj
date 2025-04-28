@@ -17,6 +17,12 @@ public class GamePanel extends JPanel implements Runnable {
     public final int screenWidth = tileSize * maxScreenCol;
     public final int screenHeight = tileSize * maxScreenRow;
 
+    //world settings
+    public final int maxWorldCol = 63;
+    public final int maxWorldRow = 60;
+    public final int worldWidth = tileSize * maxWorldCol;
+    public final int worldHeight = tileSize * maxWorldRow;
+
     //when i instantiate a class i always pass (this) because im passing the gamepanel from iinside gp class
 
     //instantiate tilemanager
@@ -30,7 +36,8 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
 
     //instantiating player class
-    Player player = new Player(this,keyH);
+    //public so i can access it in other classes
+    public Player player = new Player(this,keyH);
 
     public GamePanel() {
 

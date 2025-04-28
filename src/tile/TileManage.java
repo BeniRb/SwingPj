@@ -25,11 +25,11 @@ public class TileManage {
         //initialize mapTileNum
         //right now its 16x12but soon its gonna be 63x60
         //this gets the numbers from the map and instead of drawing each tile and writing like 5000 lines of code it does it for me
-        mapTileNum = new int[gp.maxScreenCol][gp.maxScreenRow];
+        mapTileNum = new int[gp.maxWorldCol][gp.maxWorldRow];
         //initializing getTileImage
         getTileImage();
         //intializing loadMap method
-        loadMap("/maps/map01.txt");
+        loadMap("/maps/world_map.txt");
     }
 
         public void getTileImage() {
@@ -37,37 +37,25 @@ public class TileManage {
             //placeholders
             tiles[0] = new Tile();
             tiles[0].image = ImageIO.read(getClass().getResourceAsStream("/tiles/flower.png"));
-
             tiles[1] = new Tile();
             tiles[1].image = ImageIO.read(getClass().getResourceAsStream("/tiles/flower.png"));
-
             tiles[2] = new Tile();
             tiles[2].image = ImageIO.read(getClass().getResourceAsStream("/tiles/flower.png"));
-
             tiles[3] = new Tile();
             tiles[3].image = ImageIO.read(getClass().getResourceAsStream("/tiles/flower.png"));
-
             tiles[4] = new Tile();
             tiles[4].image = ImageIO.read(getClass().getResourceAsStream("/tiles/flower.png"));
-
             tiles[5] = new Tile();
             tiles[5].image = ImageIO.read(getClass().getResourceAsStream("/tiles/flower.png"));
-
             tiles[6] = new Tile();
             tiles[6].image = ImageIO.read(getClass().getResourceAsStream("/tiles/flower.png"));
-
             tiles[7] = new Tile();
             tiles[7].image = ImageIO.read(getClass().getResourceAsStream("/tiles/flower.png"));
-
             tiles[8] = new Tile();
             tiles[8].image = ImageIO.read(getClass().getResourceAsStream("/tiles/flower.png"));
-
             tiles[9] = new Tile();
             tiles[9].image = ImageIO.read(getClass().getResourceAsStream("/tiles/flower.png"));
-
 //0-9 are placeholders
-
-
             tiles[10] = new Tile();
             tiles[10].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass.png"));
 
@@ -119,6 +107,18 @@ public class TileManage {
             tiles[26] = new Tile();
             tiles[26].image = ImageIO.read(getClass().getResourceAsStream("/tiles/water_bottom_left.png"));
 
+            tiles[27] = new Tile();
+            tiles[27].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass_top_corner_left.png"));
+
+            tiles[28] = new Tile();
+            tiles[28].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass_top_corner_right.png"));
+
+            tiles[29] = new Tile();
+            tiles[29].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass_bottom_corner_left.png"));
+
+            tiles[30] = new Tile();
+            tiles[30].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass_bottom_corner_right.png"));
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -132,17 +132,17 @@ public class TileManage {
             int col=0;
             int row=0;
 
-            while(col <gp.maxScreenCol && row <gp.maxScreenRow) {
+            while(col <gp.maxWorldCol && row <gp.maxWorldRow) {
                 String line = br.readLine();
 
-                while(col < gp.maxScreenCol ) {
+                while(col < gp.maxWorldCol ) {
                     String [] numbers = line.split(" ");
                     int num = Integer.parseInt(numbers[col]);
 
                     mapTileNum[col][row] = num;
                     col++;
                 }
-                if(col == gp.maxScreenCol) {
+                if(col == gp.maxWorldCol) {
                     col = 0;
                     row++;
                 }
@@ -160,23 +160,32 @@ public class TileManage {
 
 
     public void draw(Graphics2D g2) {
-        int col= 0;
-        int row = 0;
-        int x=0;
-        int y=0;
+        int worldCol= 0;
+        int worldRow = 0;
 
-        while(col<gp.maxScreenCol && row<gp.maxScreenRow) {
+        while(worldCol < gp.maxWorldCol && worldRow < gp.maxWorldRow) {
 
-            int tileNum = mapTileNum[col][row];
+            int tileNum = mapTileNum[worldCol][worldRow];
 
-            g2.drawImage(tiles[tileNum].image,x,y,gp.tileSize,gp.tileSize,null);
-            col++;
-            x+=gp.tileSize;
-            if(col==gp.maxScreenCol) {
-                col=0;
-                x=0;
-                row++;
-                y+=gp.tileSize;
+            //
+            int worldX= worldCol * gp.tileSize;
+            int worldY= worldRow * gp.tileSize;
+            int screenX = worldX - gp.player.worldX + gp.player.screenX;
+            int screenY = worldY - gp.player.worldY + gp.player.screenY;
+//if you dont see the tile you dont need to render(draw) it
+            if(worldX + gp.tileSize> gp.player.worldX - gp.player.screenX &&
+               worldX - gp.tileSize< gp.player.worldX + gp.player.screenX &&
+               worldY + gp.tileSize> gp.player.worldY - gp.player.screenY &&
+               worldY - gp.tileSize< gp.player.worldY + gp.player.screenY) {
+
+                g2.drawImage(tiles[tileNum].image,screenX,screenY,gp.tileSize,gp.tileSize,null);
+            }
+
+            worldCol++;
+
+            if(worldCol==gp.maxWorldCol) {
+                worldCol=0;
+                worldRow++;
             }
         }
 
