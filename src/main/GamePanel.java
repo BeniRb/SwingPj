@@ -37,9 +37,14 @@ public class GamePanel extends JPanel implements Runnable {
     //instantiating collision class
      public checkCollision cChecker = new checkCollision(this);
 
+     //instantiate object
+
     //instantiating player class
     //public so i can access it in other classes
     public Player player = new Player(this,keyH);
+
+    //instantiate Sobject
+
 
     public GamePanel() {
 
@@ -48,6 +53,10 @@ public class GamePanel extends JPanel implements Runnable {
         this.setDoubleBuffered(true);
         this.addKeyListener(keyH);
         this.setFocusable(true);
+    }
+
+    //initilize objects
+    public void setupGame() {
     }
 
     public void startGameThread() {
