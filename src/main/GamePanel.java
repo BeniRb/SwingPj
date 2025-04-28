@@ -34,6 +34,8 @@ public class GamePanel extends JPanel implements Runnable {
     //instantiating keyhandler = movement
     keyHandler keyH = new keyHandler();
     Thread gameThread;
+    //instantiating collision class
+     public checkCollision cChecker = new checkCollision(this);
 
     //instantiating player class
     //public so i can access it in other classes

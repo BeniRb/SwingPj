@@ -12,8 +12,8 @@ import java.io.InputStreamReader;
 public class TileManage {
 
     GamePanel gp;
-    Tile [] tiles;
-    int  [][] mapTileNum;
+    public Tile [] tiles;
+    public int [][] mapTileNum;
 
     public TileManage(GamePanel gp) {
         this.gp = gp;
@@ -56,6 +56,7 @@ public class TileManage {
             tiles[9] = new Tile();
             tiles[9].image = ImageIO.read(getClass().getResourceAsStream("/tiles/flower.png"));
 //0-9 are placeholders
+            //collision =true on the tiles i want to collide with the player
             tiles[10] = new Tile();
             tiles[10].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass.png"));
 
@@ -64,60 +65,77 @@ public class TileManage {
 
             tiles[12] = new Tile();
             tiles[12].image = ImageIO.read(getClass().getResourceAsStream("/tiles/wall.png"));
+            tiles[12].collision = true;
 
             tiles[13] = new Tile();
             tiles[13].image = ImageIO.read(getClass().getResourceAsStream("/tiles/water.png"));
+            tiles[13].collision = true;
 
             tiles[14] = new Tile();
             tiles[14].image = ImageIO.read(getClass().getResourceAsStream("/tiles/sand.png"));
 
             tiles[15] = new Tile();
             tiles[15].image = ImageIO.read(getClass().getResourceAsStream("/tiles/tree.png"));
+            tiles[15].collision = true;
 
             tiles[16] = new Tile();
             tiles[16].image = ImageIO.read(getClass().getResourceAsStream("/tiles/tree2.png"));
+            tiles[16].collision = true;
 
             tiles[17] = new Tile();
             tiles[17].image = ImageIO.read(getClass().getResourceAsStream("/tiles/flower.png"));
 
             tiles[18] = new Tile();
             tiles[18].image = ImageIO.read(getClass().getResourceAsStream("/tiles/fence.png"));
+            tiles[18].collision = true;
 
             tiles[19] = new Tile();
             tiles[19].image = ImageIO.read(getClass().getResourceAsStream("/tiles/water_top.png"));
+            tiles[19].collision = true;
 
             tiles[20] = new Tile();
             tiles[20].image = ImageIO.read(getClass().getResourceAsStream("/tiles/water_bottom.png"));
+            tiles[20].collision = true;
 
             tiles[21] = new Tile();
             tiles[21].image = ImageIO.read(getClass().getResourceAsStream("/tiles/water_left.png"));
+            tiles[21].collision = true;
 
             tiles[22] = new Tile();
             tiles[22].image = ImageIO.read(getClass().getResourceAsStream("/tiles/water_right.png"));
+            tiles[22].collision = true;
 
             tiles[23] = new Tile();
             tiles[23].image = ImageIO.read(getClass().getResourceAsStream("/tiles/water_top_right.png"));
+            tiles[23].collision = true;
 
             tiles[24] = new Tile();
             tiles[24].image = ImageIO.read(getClass().getResourceAsStream("/tiles/water_top_left.png"));
+            tiles[24].collision = true;
 
             tiles[25] = new Tile();
             tiles[25].image = ImageIO.read(getClass().getResourceAsStream("/tiles/water_bottom_right.png"));
+            tiles[25].collision = true;
 
             tiles[26] = new Tile();
             tiles[26].image = ImageIO.read(getClass().getResourceAsStream("/tiles/water_bottom_left.png"));
+            tiles[26].collision = true;
 
             tiles[27] = new Tile();
             tiles[27].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass_top_corner_left.png"));
+            tiles[27].collision = true;
 
             tiles[28] = new Tile();
             tiles[28].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass_top_corner_right.png"));
+            tiles[28].collision = true;
 
             tiles[29] = new Tile();
             tiles[29].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass_bottom_corner_left.png"));
+            tiles[29].collision = true;
 
             tiles[30] = new Tile();
             tiles[30].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass_bottom_corner_right.png"));
+            tiles[30].collision = true;
 
         } catch (IOException e) {
             e.printStackTrace();

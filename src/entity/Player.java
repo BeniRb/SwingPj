@@ -26,6 +26,15 @@ public class Player extends Entity {
      setDefaultValues();
      // initializes players sprites
      getPlayerImage();
+
+     //instantiating rectangle for collision
+     //i pass the parameters that i want to collide with different tiles
+     //if i wont like the way the player collides with the tiles i change the numbers
+     solidArea = new Rectangle();
+     solidArea.x = 8;
+     solidArea.y = 16;
+     solidArea.width = 32;
+     solidArea.height = 32;
  }
 // player starting pos and speed
  public void setDefaultValues() {
@@ -52,25 +61,45 @@ public class Player extends Entity {
     }
     //updating the images / cycling through them and updating it in game panel
  public void update() {
-     //this if statement checks if and of themoving keys are pressed, if yes it starts the sprite cycle,basiclly changing the picture
+     //this if statement checks if and or the moving keys are pressed, if yes it starts the sprite cycle,basiclly changing the picture
      //if no key is pressed then the picture/ sprite remains static
+     //also here we check for collision
      if(keyH.upPressed || keyH.downPressed || keyH.leftPressed || keyH.rightPressed) {
          if(keyH.upPressed) {
              direction = "up";
-             worldY-=speed;
          }
          else if(keyH.downPressed) {
              direction = "down";
-             worldY+=speed;
          }
          else if(keyH.leftPressed) {
              direction = "left";
-             worldX-=speed;
          }
          else  if(keyH.rightPressed) {
              direction = "right";
-             worldX+=speed;
          }
+// here i write all the collision code//checking tile collision
+         isCollided = false;
+         // im passing this player class because its a sub-class to entity
+         gp.cChecker .checkTiles(this);
+
+         //if collision is false player can move
+         if(!isCollided) {
+             switch (direction){
+                 case "up":
+                     worldY-=speed;
+                     break;
+                 case "down":
+                     worldY+=speed;
+                     break;
+                 case "left":
+                     worldX-=speed;
+                     break;
+                 case "right":
+                     worldX+=speed;
+                     break;
+             }
+         }
+
          //sprite cycler / if you want to add more sprites you do that here
          //first you add images in getplayerimage
          // then add up3 in the draw method
