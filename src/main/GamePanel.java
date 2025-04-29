@@ -1,6 +1,7 @@
 package main;
 
 import entity.Player;
+import object.Sobject;
 import tile.TileManage;
 
 import javax.swing.*;
@@ -24,7 +25,6 @@ public class GamePanel extends JPanel implements Runnable {
     public final int worldHeight = tileSize * maxWorldRow;
 
     //when i instantiate a class i always pass (this) because im passing the gamepanel from iinside gp class
-
     //instantiate tilemanager
     TileManage tileM = new TileManage(this);
 
@@ -37,13 +37,16 @@ public class GamePanel extends JPanel implements Runnable {
     //instantiating collision class
      public checkCollision cChecker = new checkCollision(this);
 
+    //instantiate Asetter
+    public Asetter aSetter = new Asetter(this);
+
      //instantiate object
+    public Sobject [] obj = new Sobject[10];
+
 
     //instantiating player class
     //public so i can access it in other classes
     public Player player = new Player(this,keyH);
-
-    //instantiate Sobject
 
 
     public GamePanel() {
@@ -57,6 +60,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     //initilize objects
     public void setupGame() {
+        aSetter.setObj();
     }
 
     public void startGameThread() {
@@ -103,6 +107,12 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
         //draw tiles
         tileM.draw(g2);
+        //draw objects
+        for (int i = 0; i < obj.length; i++) {
+            if(obj[i] != null) {
+               obj[i].draw(g2, this);
+            }
+        }
         //draw the player
         player.draw(g2);
 
