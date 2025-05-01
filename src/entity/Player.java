@@ -13,6 +13,7 @@ public class Player extends Entity {
 //indicating players screen
  public final int screenX;
  public final int screenY;
+ int hasKeys = 0;
 
  public Player(GamePanel gp, keyHandler keyH) {
      this.gp = gp;
@@ -32,6 +33,8 @@ public class Player extends Entity {
      //if i wont like the way the player collides with the tiles i change the numbers
      solidArea = new Rectangle();
      solidArea.x = 8;
+     solidAreaDefX = solidArea.x;
+     solidAreaDefY = solidArea.y;
      solidArea.y = 16;
      solidArea.width = 32;
      solidArea.height = 32;
@@ -81,6 +84,9 @@ public class Player extends Entity {
          isCollided = false;
          // im passing this player class because its a sub-class to entity
          gp.cChecker .checkTiles(this);
+         //check obj collision
+         int ObjIndex = gp.cChecker.checkObj(this,true);
+         pickUpObj(ObjIndex);
 
          //if collision is false player can move
          if(!isCollided) {
@@ -115,6 +121,37 @@ public class Player extends Entity {
              }
              spriteCounter = 0;
          }
+     }
+ }
+
+ public void pickUpObj(int i) {
+     // you can put any number as long as it does touch the object
+     if(i != 999){
+       String objName= gp.obj[i].name;
+
+       switch (objName) {
+           case "Key":
+               hasKeys++;
+               gp.obj[i] = null;
+               System.out.println("key+ "+ hasKeys);
+               break;
+           case "Wine":
+               speed +=2;
+               gp.obj[i] = null;
+                break;
+           case "Water":
+               speed-=2;
+               gp.obj[i] = null;
+               break;
+           case "Door":
+               if(hasKeys > 0) {
+                   gp.obj[i] = null;
+                   hasKeys--;
+               }
+               System.out.println("key+ "+ hasKeys);
+               break;
+
+       }
      }
  }
  public void draw(Graphics2D g2) {

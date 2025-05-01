@@ -5,11 +5,11 @@ import object.Obj_key;
 import object.Obj_water;
 import object.Obj_wine;
 
-public class Asetter {
+public class ObjSetter {
 
     GamePanel gp;
 
-    public Asetter(GamePanel gp) {
+    public ObjSetter(GamePanel gp) {
         this.gp = gp;
 
     }
@@ -23,9 +23,9 @@ public class Asetter {
         gp.obj[1].worldX = 40 *gp.tileSize;
         gp.obj[1].worldY = 37 *gp.tileSize;
 
-        gp.obj[2] = new Obj_door();
-        gp.obj[2].worldX = 43 *gp.tileSize;
-        gp.obj[2].worldY = 33 *gp.tileSize;
+//        gp.obj[2] = new Obj_door();
+//        gp.obj[2].worldX = 43 *gp.tileSize;
+//        gp.obj[2].worldY = 33 *gp.tileSize;
 
         gp.obj[3] = new Obj_door();
         gp.obj[3].worldX = 31 *gp.tileSize;

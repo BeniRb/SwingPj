@@ -38,7 +38,7 @@ public class GamePanel extends JPanel implements Runnable {
      public checkCollision cChecker = new checkCollision(this);
 
     //instantiate Asetter
-    public Asetter aSetter = new Asetter(this);
+    public ObjSetter aSetter = new ObjSetter(this);
 
      //instantiate object
     public Sobject [] obj = new Sobject[10];

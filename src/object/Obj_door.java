@@ -11,5 +11,6 @@ public class Obj_door extends Sobject{
         } catch (Exception e) {
             e.printStackTrace();
         }
+        collision = true;
     }
 }

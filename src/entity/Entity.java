@@ -16,5 +16,6 @@ public class Entity {
     public int spriteNum=1;
 // for player collision
     public Rectangle solidArea;
+    public int solidAreaDefX,solidAreaDefY;
     public boolean isCollided = false;
 }
