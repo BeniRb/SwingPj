@@ -134,9 +134,11 @@ public class Player extends Entity {
                hasKeys++;
                gp.obj[i] = null;
                System.out.println("key+ "+ hasKeys);
+               gp.playSoundE(4);
                break;
            case "Wine":
                speed +=2;
+               gp.playSoundE(1);
                gp.obj[i] = null;
                 break;
            case "Water":
@@ -145,6 +147,7 @@ public class Player extends Entity {
                break;
            case "Door":
                if(hasKeys > 0) {
+                   gp.playSoundE(0);
                    gp.obj[i] = null;
                    hasKeys--;
                }

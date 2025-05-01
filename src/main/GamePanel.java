@@ -21,8 +21,8 @@ public class GamePanel extends JPanel implements Runnable {
     //world settings
     public final int maxWorldCol = 63;
     public final int maxWorldRow = 60;
-    public final int worldWidth = tileSize * maxWorldCol;
-    public final int worldHeight = tileSize * maxWorldRow;
+//    public final int worldWidth = tileSize * maxWorldCol;
+//    public final int worldHeight = tileSize * maxWorldRow;
 
     //when i instantiate a class i always pass (this) because im passing the gamepanel from iinside gp class
     //instantiate tilemanager
@@ -36,6 +36,9 @@ public class GamePanel extends JPanel implements Runnable {
     Thread gameThread;
     //instantiating collision class
      public checkCollision cChecker = new checkCollision(this);
+
+     //instantiate sound class
+    Sound sound = new Sound();
 
     //instantiate Asetter
     public ObjSetter aSetter = new ObjSetter(this);
@@ -58,9 +61,12 @@ public class GamePanel extends JPanel implements Runnable {
         this.setFocusable(true);
     }
 
-    //initilize objects
+    //initilize game
     public void setupGame() {
+        //places objects
         aSetter.setObj();
+        //starts theme music
+        playMusic(3);
     }
 
     public void startGameThread() {
@@ -117,6 +123,19 @@ public class GamePanel extends JPanel implements Runnable {
         player.draw(g2);
 
         g2.dispose();
+    }
+
+    public void playMusic(int i) {
+        sound.setFile(i);
+        sound.play();
+        sound.loop();
+    }
+    public void stopMusic() {
+        sound.stop();
+    }
+    public void playSoundE (int i) {
+        sound.setFile(i);
+        sound.play();
     }
 
 }
