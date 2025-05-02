@@ -13,10 +13,10 @@ public class Player extends Entity {
 //indicating players screen
  public final int screenX;
  public final int screenY;
- int hasKeys = 0;
- int keyCounter = 0;
- int hasGoldKey = 0;
- int goldKeyCounter = 0;
+ public int hasKeys = 0;
+ public int keyCounter = 0;
+ public int hasGoldKey = 0;
+ public int goldKeyCounter = 0;
 
  public Player(GamePanel gp, keyHandler keyH) {
      this.gp = gp;

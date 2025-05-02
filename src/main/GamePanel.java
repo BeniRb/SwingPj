@@ -33,6 +33,9 @@ public class GamePanel extends JPanel implements Runnable {
 
     //instantiating keyhandler = movement
     keyHandler keyH = new keyHandler();
+
+    // instantiating ui
+    public UI ui = new UI(this);
     Thread gameThread;
     //instantiating collision class
      public checkCollision cChecker = new checkCollision(this);
@@ -45,7 +48,7 @@ public class GamePanel extends JPanel implements Runnable {
     public ObjSetter aSetter = new ObjSetter(this);
 
      //instantiate object
-    public Sobject [] obj = new Sobject[10];
+    public Sobject [] obj = new Sobject[20];
 
 
     //instantiating player class
@@ -122,6 +125,9 @@ public class GamePanel extends JPanel implements Runnable {
         }
         //draw the player
         player.draw(g2);
+
+        //draw the ui
+        ui.draw(g2);
 
         g2.dispose();
     }

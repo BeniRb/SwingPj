@@ -51,5 +51,9 @@ public class ObjSetter {
         gp.obj[9] = new Obj_key();
         gp.obj[9].worldX = 28 *gp.tileSize;
         gp.obj[9].worldY = 43 *gp.tileSize;
+
+        gp.obj[10] = new Obj_door();
+        gp.obj[10].worldX = 14 *gp.tileSize;
+        gp.obj[10].worldY = 8 *gp.tileSize;
    }
 }
