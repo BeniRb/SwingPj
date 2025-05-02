@@ -138,6 +138,7 @@ public class Player extends Entity {
                keyCounter++;
                gp.obj[i] = null;
                gp.playSoundE(4);
+               gp.ui.showMsg("Silver key acquired!");
                break;
            case "Wine":
                speed +=2;
@@ -153,6 +154,10 @@ public class Player extends Entity {
                    gp.playSoundE(0);
                    gp.obj[i] = null;
                    hasKeys--;
+                   gp.ui.showMsg("Door is open!");
+               }
+               else{
+                   gp.ui.showMsg("You need a silver key");
                }
                break;
            case "Golden key":
@@ -160,13 +165,26 @@ public class Player extends Entity {
                hasGoldKey++;
                goldKeyCounter++;
                gp.obj[i] = null;
+               gp.ui.showMsg("Gold key acquired!");
                break;
            case "Golden door":
-               if(hasGoldKey > 0 && keyCounter >= 3) {
+               if(hasGoldKey > 1 && keyCounter >= 3) {
                    gp.playSoundE(0);
                    gp.obj[i] = null;
                    hasGoldKey--;
+                   gp.ui.showMsg("Golden door is open!");
+                   gp.stopMusic();
                }
+               else{
+                   gp.ui.showMsg("You need to collect 3 silver keys and 2 gold keys");
+//                   gp.ui.showMsg("you have " + goldKeyCounter + " gold keys");
+//                   gp.ui.showMsg("you have " + keyCounter + " silver keys");
+               }
+               break;
+           case "End chest":
+               gp.ui.finishGame = true;
+               gp.stopMusic();
+               gp.playSoundE(2);
                break;
        }
      }
