@@ -39,6 +39,7 @@ public class GamePanel extends JPanel implements Runnable {
 
      //instantiate sound class
     Sound sound = new Sound();
+    Sound SE = new Sound();
 
     //instantiate Asetter
     public ObjSetter aSetter = new ObjSetter(this);
@@ -134,8 +135,8 @@ public class GamePanel extends JPanel implements Runnable {
         sound.stop();
     }
     public void playSoundE (int i) {
-        sound.setFile(i);
-        sound.play();
+        SE.setFile(i);
+        SE.play();
     }
 
 }

@@ -1,9 +1,6 @@
 package main;
 
-import object.Obj_door;
-import object.Obj_key;
-import object.Obj_water;
-import object.Obj_wine;
+import object.*;
 
 public class ObjSetter {
 
@@ -23,9 +20,9 @@ public class ObjSetter {
         gp.obj[1].worldX = 40 *gp.tileSize;
         gp.obj[1].worldY = 37 *gp.tileSize;
 
-//        gp.obj[2] = new Obj_door();
-//        gp.obj[2].worldX = 43 *gp.tileSize;
-//        gp.obj[2].worldY = 33 *gp.tileSize;
+        gp.obj[2] = new Obj_door();
+        gp.obj[2].worldX = 45 *gp.tileSize;
+        gp.obj[2].worldY = 29 *gp.tileSize;
 
         gp.obj[3] = new Obj_door();
         gp.obj[3].worldX = 31 *gp.tileSize;
@@ -42,5 +39,17 @@ public class ObjSetter {
         gp.obj[6] = new Obj_water();
         gp.obj[6].worldX = 28 *gp.tileSize;
         gp.obj[6].worldY = 19 *gp.tileSize;
+
+        gp.obj[7] = new Obj_golden_key();
+        gp.obj[7].worldX = 40 *gp.tileSize;
+        gp.obj[7].worldY = 11 *gp.tileSize;
+
+        gp.obj[8] = new Obj_golden_door();
+        gp.obj[8].worldX = 12 *gp.tileSize;
+        gp.obj[8].worldY = 10 *gp.tileSize;
+
+        gp.obj[9] = new Obj_key();
+        gp.obj[9].worldX = 28 *gp.tileSize;
+        gp.obj[9].worldY = 43 *gp.tileSize;
    }
 }

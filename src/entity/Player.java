@@ -14,6 +14,9 @@ public class Player extends Entity {
  public final int screenX;
  public final int screenY;
  int hasKeys = 0;
+ int keyCounter = 0;
+ int hasGoldKey = 0;
+ int goldKeyCounter = 0;
 
  public Player(GamePanel gp, keyHandler keyH) {
      this.gp = gp;
@@ -43,7 +46,7 @@ public class Player extends Entity {
  public void setDefaultValues() {
      worldX = gp.tileSize * 30;
      worldY = gp.tileSize * 31;
-     speed = 3;
+     speed = 10;
      direction = "down";
  }
 
@@ -132,8 +135,8 @@ public class Player extends Entity {
        switch (objName) {
            case "Key":
                hasKeys++;
+               keyCounter++;
                gp.obj[i] = null;
-               System.out.println("key+ "+ hasKeys);
                gp.playSoundE(4);
                break;
            case "Wine":
@@ -151,9 +154,20 @@ public class Player extends Entity {
                    gp.obj[i] = null;
                    hasKeys--;
                }
-               System.out.println("key+ "+ hasKeys);
                break;
-
+           case "Golden key":
+               gp.playSoundE(4);
+               hasGoldKey++;
+               goldKeyCounter++;
+               gp.obj[i] = null;
+               break;
+           case "Golden door":
+               if(hasGoldKey > 0 && keyCounter >= 3) {
+                   gp.playSoundE(0);
+                   gp.obj[i] = null;
+                   hasGoldKey--;
+               }
+               break;
        }
      }
  }

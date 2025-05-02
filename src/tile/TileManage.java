@@ -137,6 +137,10 @@ public class TileManage {
             tiles[30].image = ImageIO.read(getClass().getResourceAsStream("/tiles/grass_bottom_corner_right.png"));
             tiles[30].collision = true;
 
+            tiles[31] = new Tile();
+            tiles[31].image = ImageIO.read(getClass().getResourceAsStream("/tiles/oak.png"));
+            tiles[31].collision = true;
+
         } catch (IOException e) {
             e.printStackTrace();
         }
