@@ -11,7 +11,7 @@ public class Main {
         window.setResizable(false);
         window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         window.setLocationRelativeTo(null);
-        window.setTitle("The Drunken Amish");
+        window.setTitle("Path to the Prize");
 
         GamePanel gamePanel = new GamePanel();
         window.add(gamePanel);
