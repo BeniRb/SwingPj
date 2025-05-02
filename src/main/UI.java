@@ -75,6 +75,13 @@ public class UI {
                     displayMsg = false;
                 }
             }
+            //playstate
+            if(gp.gameState== gp.playstate){
+
+            }
+            if(gp.gameState == gp.pausestate){
+                g2.drawString("PAUSED",gp.screenHeight/2,gp.screenWidth/2);
+            }
         }
     }
 }

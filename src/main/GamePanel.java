@@ -32,7 +32,7 @@ public class GamePanel extends JPanel implements Runnable {
     int FPS = 60;
 
     //instantiating keyhandler = movement
-    keyHandler keyH = new keyHandler();
+    keyHandler keyH = new keyHandler(this);
 
     // instantiating ui
     public UI ui = new UI(this);
@@ -49,6 +49,11 @@ public class GamePanel extends JPanel implements Runnable {
 
      //instantiate object
     public Sobject [] obj = new Sobject[20];
+
+    //game state
+    public int gameState;
+    public final int playstate = 1;
+    public final int pausestate = 2;
 
 
     //instantiating player class
@@ -71,6 +76,8 @@ public class GamePanel extends JPanel implements Runnable {
         aSetter.setObj();
         //starts theme music
         playMusic(3);
+        //gamestate
+        gameState = playstate;
     }
 
     public void startGameThread() {
@@ -108,8 +115,12 @@ public class GamePanel extends JPanel implements Runnable {
 
 
     public void update() {
-        player.update();
-
+        if(gameState == playstate) {
+            player.update();
+        }
+        if(gameState == pausestate) {
+            //nothing for now
+        }
     }
 
     public void paintComponent(Graphics g) {
