@@ -31,9 +31,9 @@ public class keyHandler implements KeyListener {
         }
         if(code == KeyEvent.VK_ESCAPE) {
             if(gp.gameState== gp.playstate){
-                gp.gameState =gp.pausestate;
+                gp.gameState = gp.pausestate;
             } else if (gp.gameState== gp.pausestate) {
-                gp.gameState =gp.playstate;
+                gp.gameState = gp.playstate;
             }
         }
     }
