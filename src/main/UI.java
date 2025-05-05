@@ -17,6 +17,7 @@ public class UI {
     public String msg = "";
     int msgCounter = 0;
     public boolean finishGame = false;
+    public int commandNumber =0;
 
 
     public UI(GamePanel gp) {
@@ -52,8 +53,12 @@ public class UI {
             int y = gp.getHeight()/2;
             g2.drawString(text, x, y);
             gp.gameThread = null;
-
         }
+        //titlestate
+        if(gp.gameState == gp.titlestate) {
+            drawTitleScreen();
+        }
+        //gamestate
         if (gp.gameState == gp.playstate) {
             g2.setFont(arial);
             g2.setColor(Color.white);
@@ -78,10 +83,57 @@ public class UI {
                 }
             }
         }
+        //pausestate
         if(gp.gameState == gp.pausestate){
             drawPauseScreen();
 //                g2.drawString("PAUSED",gp.screenHeight/2,gp.screenWidth/2);
             }
+    }
+    public void drawTitleScreen() {
+        g2.setColor(new Color(34, 139, 34));
+        g2.fillRect(0,0,gp.screenWidth, gp.screenHeight);
+        int xPos;
+        int yPos;
+        //title name
+        g2.setFont(g2.getFont().deriveFont(Font.BOLD,50f));
+        String text = "Path To The Prize";
+        xPos = getXforText(text);
+        yPos = gp.tileSize * 2;
+        //text shadow
+        g2.setColor(Color.black);
+        g2.drawString(text, xPos+3, yPos+3);
+        //text color
+        g2.setColor(Color.white);
+        g2.drawString(text, xPos, yPos);
+
+        //game explanation
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 20f));
+        g2.setColor(Color.white);
+        text = " Welcome to my game!\n"
+                + "You need to go through the maze and collect keys\n"
+                +"you'll notice you have items that give you certain buffs\n"
+                +"some doors need different keys to open\n"
+                +"the total amount of keys is displayed on the right\n"
+                +"Good luck!";
+        yPos =gp.tileSize * 4;
+        int lineHeight = g2.getFontMetrics().getHeight();
+        for (String line : text.split("\n")) {
+            xPos = getXforText(line);
+            g2.drawString(line, xPos, yPos);
+            yPos += lineHeight; // move down for next line
+        }
+        // start game
+        g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40f));
+        g2.setColor(Color.white);
+        text = "START GAME";
+        xPos = getXforText(text);
+        yPos = gp.tileSize * 8;
+        g2.drawString(text, xPos, yPos);
+
+        //get width and height for mouse
+        FontMetrics fm = g2.getFontMetrics();
+        int buttonWidth= fm.stringWidth(text);
+        int buttonHeight = fm.getHeight();
     }
     public void drawPauseScreen() {
         g2.setFont(arial);
