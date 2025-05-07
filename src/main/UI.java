@@ -70,8 +70,8 @@ public class UI {
             g2.drawString("X " + gp.player.hasGoldKey, 65, 120);
 
 
-            g2.drawString("collected silver keys x " + gp.player.keyCounter, 400, 50);
-            g2.drawString("collected gold keys x " + gp.player.goldKeyCounter, 400, 90);
+            g2.drawString("total silver keys x " + gp.player.keyCounter, 400, 50);
+            g2.drawString("total gold keys x " + gp.player.goldKeyCounter, 400, 90);
             //msg
             if (displayMsg) {
                 g2.drawString(msg, gp.tileSize / 2, gp.tileSize * 5);
@@ -122,7 +122,7 @@ public class UI {
             g2.drawString(line, xPos, yPos);
             yPos += lineHeight; // move down for next line
         }
-        // start game
+        // start game button
         g2.setFont(g2.getFont().deriveFont(Font.PLAIN, 40f));
         g2.setColor(Color.white);
         text = "START GAME";
