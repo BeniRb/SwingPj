@@ -15,8 +15,13 @@ Smooth 2D movement with keyboard and mouse input
 
 🎮 Controls
 • Action	Key
+
 • Move Up	W / ↑
+
 • Move Down	S / ↓
+
 • Move Left	A / ←
+
 • Move Right	D / →
+
 • Pause Game	ESC
